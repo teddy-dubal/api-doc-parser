@@ -21,9 +21,9 @@ export default function (
     const name = item.replace(`/`, ``);
     const url = removeTrailingSlash(entrypointUrl) + item;
     const firstMethod = Object.keys(
-      response.paths[item]
+      response.paths[item] || {}
     )[0] as keyof OpenAPIV3.PathItemObject;
-    const responsePathItem = response.paths[item][
+    const responsePathItem = (response.paths[item] || {})[
       firstMethod
     ] as OpenAPIV3.OperationObject;
 
