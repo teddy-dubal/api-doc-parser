@@ -16,8 +16,9 @@ export default function (
   entrypointUrl: string
 ): Resource[] {
   const paths = getResources(response.paths);
+  const resources: Resource[] = [];
 
-  const resources = paths.map((item) => {
+  paths.forEach((item) => {
     const name = item.replace(`/`, ``);
     const url = removeTrailingSlash(entrypointUrl) + item;
     const firstMethod = Object.keys(
@@ -28,25 +29,29 @@ export default function (
     ] as OpenAPIV2.OperationObject;
 
     if (!responsePathItem.tags) {
-      throw new Error(); // @TODO
+      return;
+      // throw new Error("ko"); // @TODO
     }
 
     const title = responsePathItem.tags[0];
 
     if (!response.definitions) {
-      throw new Error(); // @TODO
+      return;
+      // throw new Error("ko"); // @TODO
     }
 
     const definition = response.definitions[title];
 
     if (!definition) {
-      throw new Error(); // @TODO
+      return;
+      // throw new Error("ko"); // @TODO
     }
 
     const properties = definition.properties;
 
     if (!properties) {
-      throw new Error(); // @TODO
+      return;
+      // throw new Error("ko"); // @TODO
     }
 
     const fieldNames = Object.keys(properties);
@@ -67,13 +72,15 @@ export default function (
         })
     );
 
-    return new Resource(name, url, {
-      id: null,
-      title,
-      fields,
-      readableFields: fields,
-      writableFields: fields,
-    });
+    resources.push(
+      new Resource(name, url, {
+        id: null,
+        title,
+        fields,
+        readableFields: fields,
+        writableFields: fields,
+      })
+    );
   });
 
   return resources;
