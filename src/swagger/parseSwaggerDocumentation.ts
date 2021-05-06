@@ -12,7 +12,9 @@ export default function parseSwaggerDocumentation(
   entrypointUrl: string
 ): Promise<ParsedSwaggerDocumentation> {
   entrypointUrl = removeTrailingSlash(entrypointUrl);
-  return fetch(entrypointUrl)
+  return fetch(entrypointUrl, {
+    headers: { Accept: "application/vnd.swagger+json" },
+  })
     .then((res) => Promise.all([res, res.json()]))
     .then(
       ([res, response]: [res: Response, response: OpenAPIV2.Document]) => {
