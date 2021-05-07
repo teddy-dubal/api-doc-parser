@@ -1,6 +1,6 @@
 {
-  "name": "@api-platform/api-doc-parser",
-  "version": "0.12.5",
+  "name": "@teddy-dubal/api-doc-parser",
+  "version": "0.12.6",
   "description": "Transform an API documentation (Hydra, OpenAPI, GraphQL) in an intermediate representation that can be used for various tasks such as creating smart API clients, scaffolding code or building administration interfaces.",
   "files": [
     "*.md",
@@ -9,9 +9,9 @@
     "src"
   ],
   "main": "lib/index",
-  "repository": "api-platform/api-doc-parser",
-  "homepage": "https://github.com/api-platform/api-doc-parser",
-  "bugs": "https://github.com/api-platform/api-doc-parser/issues",
+  "repository": "teddy-dubal/api-doc-parser",
+  "homepage": "https://github.com/teddy-dubal/api-doc-parser",
+  "bugs": "https://github.com/teddy-dubal/api-doc-parser/issues",
   "author": "Kévin Dunglas",
   "license": "MIT",
   "devDependencies": {
